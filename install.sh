@@ -1,6 +1,10 @@
 #! /bin/bash
 
-hash lolcat git jq &> /dev/null || printf "[+] Please install the pre-requisites first...\n"; exit 1
+if ! hash lolcat git jq &> /dev/null;
+then
+		printf "[+] Please install the pre-requisites first...\n"
+		exit 1
+fi
 
 sudo apt-get clean
 tput reset clear
