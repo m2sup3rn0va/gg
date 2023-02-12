@@ -22,7 +22,7 @@
 					"crackmapexec": "https://raw.githubusercontent.com/m2sup3rn0va/gg/main/ggt/network/crackmapexec.sh",
 					"dsniff": "https://raw.githubusercontent.com/m2sup3rn0va/gg/main/ggt/network/dsniff.sh",
 					"enum4linux": "https://raw.githubusercontent.com/m2sup3rn0va/gg/main/ggt/network/enum4linux.sh",
-					"evil-winrm": "https://raw.githubusercontent.com/m2sup3rn0va/gg/main/ggt/network/evil-winrm.sh",
+					"evil_winrm": "https://raw.githubusercontent.com/m2sup3rn0va/gg/main/ggt/network/evil_winrm.sh",
 					"impacket": "https://raw.githubusercontent.com/m2sup3rn0va/gg/main/ggt/network/impacket.sh",
 					"msfconsole": "https://raw.githubusercontent.com/m2sup3rn0va/gg/main/ggt/network/msfconsole.sh",
 					"responder": "https://raw.githubusercontent.com/m2sup3rn0va/gg/main/ggt/network/responder.sh",

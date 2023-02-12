@@ -1,8 +1,6 @@
 #! /bin/bash
 
 sudo apt-get clean
-printf "[+] Installing Lolcat...\n"
-sudo apt-get install -y lolcat > /dev/null 2>&1
 tput reset clear
 
 printf "[+] Initiating Installation...\n" | lolcat
@@ -35,17 +33,13 @@ printf "\n"
 sudo apt-get install -y git python3 python3-pip
 python3 -m pip install -U pip impacket
 
-if [ ! -d $HOME/.local/tools/impacket ];
-then
-    git clone https://github.com/fortra/impacket.git $HOME/.local/tools/impacket
-    python3 -m pip install -r $HOME/.local/tools/impacket/requirements.txt --user --no-warn-script-location
+[ -d $HOME/.local/tools/impacket ] && rm -rf $HOME/.local/tools/impacket
+git clone https://github.com/fortra/impacket.git $HOME/.local/tools/impacket
+python3 -m pip install -r $HOME/.local/tools/impacket/requirements.txt --user --no-warn-script-location
 
-    sudo chown -R $USER:$USER $HOME/.local/*
+sudo chown -R $USER:$USER $HOME/.local/*
 
-    (! grep -q 'impacket' $HOME/.gg/update-cache/gg_network.list) && printf "impacket\n" >> $HOME/.gg/update-cache/gg_network.list
+(! grep -q 'impacket' $HOME/.gg/update-cache/gg_network.list) && printf "impacket\n" >> $HOME/.gg/update-cache/gg_network.list
 
-    printf "\n[+] Impacket Installed Successfully...\n" | lolcat
-    printf "[+] All the 'impacket' scripts are in $HOME/.local/tools/impacket...\n" | lolcat
-else
-    printf "\n[+] Impacket was already installed ...\n" | lolcat
-fi
+printf "\n[+] Impacket Installed Successfully...\n" | lolcat
+printf "[+] All the 'impacket' scripts are in $HOME/.local/tools/impacket...\n" | lolcat

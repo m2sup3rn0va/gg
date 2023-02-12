@@ -43,8 +43,8 @@ case $1 in
 				curl -s $(cat $HOME/.gg/gg.json | jq '.tools[].network[].enum4linux' | tr -d '"') | bash
 			;;
 
-			evil-winrm)
-				curl -s $(cat $HOME/.gg/gg.json | jq '.tools[].network[].evil-winrm' | tr -d '"') | bash
+			evil_winrm)
+				curl -s $(cat $HOME/.gg/gg.json | jq '.tools[].network[].evil_winrm' | tr -d '"') | bash
 			;;
 
 			impacket)
