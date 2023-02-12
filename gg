@@ -63,10 +63,12 @@ case $1 in
 				case $3 in
 					network)
 						curl -s $(cat $HOME/.gg/gg.json | jq '.tools[].network[].all' | tr -d '"') | bash
+						printf "\n[+] Installation Successful - All Network Tools\n" | lolcat
 					;;
 
 					web)
 						curl -s $(cat $HOME/.gg/gg.json | jq '.tools[].web[].all' | tr -d '"') | bash
+						printf "\n[+] Installation Successful - All Web Tools\n" | lolcat
 					;;
 					*)
 						printf "[+] Installation Candidate - Not Found...\n" | lolcat
@@ -90,7 +92,7 @@ case $1 in
 		case $2 in
 			tools)
 				printf "[+] Updating Installed GitGun Tools\n" | lolcat
-				printf "-----------------------------------\n\n" | lolcat
+				echo -e "-----------------------------------\n" | lolcat
 
 				printf "[+] Updating Installed Network Tools\n" | lolcat
 				[ -s $HOME/.gg/update-cache/gg_network.list ] && cat $HOME/.gg/update-cache/gg_network.list | xargs -I{} bash -c 'printf "[+] Updating {}\n" | lolcat; \
@@ -105,7 +107,7 @@ case $1 in
 
 			shell)
 				printf "[+] Updating GitGun Shell Profile\n" | lolcat
-				printf "-----------------------------------\n\n" | lolcat
+				echo -e "---------------------------------\n" | lolcat
 
 				wget -q https://raw.githubusercontent.com/m2sup3rn0va/gg/main/ggs/shell/bash_profile -O $HOME/.bash_profile
 

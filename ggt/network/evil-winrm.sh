@@ -7,7 +7,7 @@ tput reset clear
 
 printf "[+] Initiating Installation...\n" | lolcat
 
-sudo apt-get install -y ruby ruby-dev && \
+sudo apt-get install -y ruby ruby-dev
 sudo gem install evil-winrm
 
 (! grep -q 'evil-winrm' $HOME/.gg/update-cache/gg_network.list) && printf "evil-winrm\n" >> $HOME/.gg/update-cache/gg_network.list

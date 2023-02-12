@@ -101,7 +101,7 @@ if [ ! -f $HOME/.bash_profile ];
 then
     printf "[+] Updating User Profile...\n" | lolcat
     wget -q https://raw.githubusercontent.com/m2sup3rn0va/gg/main/ggs/shell/bash_profile -O $HOME/.bash_profile
-    echo -e "source $HOME/.bash_profile" >> $HOME/.bashrc
+    [ -f $HOME/.zshrc ] && echo -e "source $HOME/.bash_profile" >> $HOME/.zshrc || echo -e "source $HOME/.bash_profile" >> $HOME/.bashrc
 fi
 
 printf "\n"
