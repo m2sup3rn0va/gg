@@ -1,11 +1,6 @@
 #! /bin/bash
 
-if ! command -v lolcat &> /dev/null;
-then
-	printf "[+] Please install 'lolcat' first...\n"
-	printf "[+] Command: 'sudo apt install -y lolcat'\n"
-	exit 0
-fi
+hash lolcat git jq || printf "[+] Please install the pre-requisites first...\n"; exit 1
 
 sudo apt-get clean
 tput reset clear
