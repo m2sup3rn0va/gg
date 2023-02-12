@@ -1,0 +1,57 @@
+" ============================================================================
+" VIMRC File
+" Created By: Mr. Sup3rN0va
+" ============================================================================
+set encoding=utf-8
+" ============================================================================
+
+" ============================================================================
+" VIM General Settings
+" ============================================================================
+" ==== Partial Autocompletion of File Names ====
+set path+=**
+syntax on
+set wildmenu " Tab Completion on command mode
+
+" ==== Spell Checker ====
+set spelllang=en_us
+set spell
+
+" ==== Tab ====
+set shiftwidth=4
+set tabstop=4
+set softtabstop=4
+set expandtab
+set smartindent
+
+" ==== Search Highlighting ====
+set hls is
+
+" ==== No Error Bells ====
+set noerrorbells
+set noswapfile
+
+" ==== Lines ====
+set nu
+set wrap
+set relativenumber
+
+" ==== Auto-reload vimrc ====
+autocmd! bufwritepost .vimrc source %
+
+" Set SHELL
+" Sometimes ZSH has issues
+set shell=/bin/bash
+
+" ================================================
+" Remapping Keys"
+" ================================================
+let mapleader = ","
+
+" ===== Better Indentation without loosing selection ====
+vnoremap > >gv
+vnoremap < <gv
+
+" ==== Get File Path ====
+imap <C-f> <C-x><C-f>
+

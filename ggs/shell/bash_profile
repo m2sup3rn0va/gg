@@ -1,0 +1,50 @@
+# ======================================================================================================
+# Startup Commands
+# ======================================================================================================
+
+export PATH="$HOME/.local/bin/:$PATH"
+
+# ======================================================================================================
+# Aliases
+# ======================================================================================================
+
+alias tmux="tmux -u -f $HOME/.tmux/tmux.conf new \"tmux display 'MOUSE MODE: ON' && exec $SHELL\""
+alias tmux-ks="cat $HOME/.tmux/tmux.conf | head -n 35 | lolcat"
+alias ls='exa -l --icons $@'
+alias ll='exa -al --icons $@'
+alias tree='exa -Tal --icons $@'
+alias cls='tput clear reset'
+alias cat='batcat $@'
+alias py='python3'
+alias pp3='python3 -m pip install'
+alias pp2='python2 -m pip install'
+alias co="sudo chown -R $USER:$USER *"
+alias evpn="sed -i 's/cipher/data-ciphers/' $1"
+alias vpn="sudo openvpn $1"
+alias prof="cat $HOME/.bash_profile | lolcat"
+alias eprof="vim $HOME/.bash_profile"
+alias hosts="sudo vim /etc/hosts"
+alias ds='echo "" && docker images -a && echo "" && docker ps -a'
+alias nsescripts='ll /usr/local/share/nmap/scripts'
+
+# ======================================================================================================
+# Functions
+# ======================================================================================================
+
+function fp()
+{
+    ps -aux | grep -v grep | grep $1 | lolcat
+}
+
+function fpid()
+{
+    ps -aux | grep -v grep | grep $1 | awk -F' ' '{ print $2 }'
+}
+
+function public()
+{
+    curl http://ifconfig.me
+    echo
+}
+
+# ======================================================================================================

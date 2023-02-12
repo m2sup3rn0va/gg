@@ -1,0 +1,132 @@
+#! /bin/bash
+
+case $1 in
+	help|*)
+		tput reset clear
+		printf "WELCOME TO GITGUN(gg) - TOOLS INSTALLATION\n" | lolcat
+		echo -e "-----------------------------------------\n" | lolcat
+		printf "[+] Syntax: gg <OPTIONS> <TOOL_NAME>\n" | lolcat
+		printf "[+] Options:\n" | lolcat
+		printf "\t[>] help - Offers this page\n" | lolcat
+		printf "\t[>] list - Lists all available tools\n" | lolcat
+		printf "\t[>] install - Installs the tool\n" | lolcat
+		printf "\t[>] update - Updates the tool\n" | lolcat
+		printf "\n"
+	;;
+
+	list)
+		tput reset clear
+		net_temp=$(mktemp)
+		web_temp=$(mktemp)
+
+		cat $HOME/.gg/gg.json | jq '.tools[].network[] | keys[]' | tr -d '"' | grep -v all > $net_temp
+		cat $HOME/.gg/gg.json | jq '.tools[].web[] | keys[]' | tr -d '"' | grep -v all > $web_temp
+
+		printf "[+] GitGun(gg) - Available Tools\n" | lolcat
+		echo -e "-------------------------------\n" | lolcat
+		cat $net_temp $web_temp
+
+		rm -rf $net_temp $web_temp
+		unset net_temp web_temp
+	;;
+
+	install)
+		case $2 in
+			shell)
+				curl -s $(cat $HOME/.gg/gg.json | jq '.shell[].shell' | tr -d '"') | bash
+			;;
+
+			zsh)
+				curl -s $(cat $HOME/.gg/gg.json | jq '.shell[].zsh' | tr -d '"') | bash
+			;;
+
+			nmap)
+				curl -s $(cat $HOME/.gg/gg.json | jq '.tools[].network[].nmap' | tr -d '"') | bash
+			;;
+
+			crackmapexec)
+				curl -s $(cat $HOME/.gg/gg.json | jq '.tools[].network[].crackmapexec' | tr -d '"') | bash
+			;;
+
+			dsniff)
+				curl -s $(cat $HOME/.gg/gg.json | jq '.tools[].network[].dsniff' | tr -d '"') | bash
+			;;
+
+			enum4linux)
+				curl -s $(cat $HOME/.gg/gg.json | jq '.tools[].network[].enum4linux' | tr -d '"') | bash
+			;;
+
+			evil-winrm)
+				curl -s $(cat $HOME/.gg/gg.json | jq '.tools[].network[].evil-winrm' | tr -d '"') | bash
+			;;
+
+			impacket)
+				curl -s $(cat $HOME/.gg/gg.json | jq '.tools[].network[].impacket' | tr -d '"') | bash
+			;;
+
+			msfconsole)
+				curl -s $(cat $HOME/.gg/gg.json | jq '.tools[].network[].msfconsole' | tr -d '"') | bash
+			;;
+
+			responder)
+				curl -s $(cat $HOME/.gg/gg.json | jq '.tools[].network[].responder' | tr -d '"') | bash
+			;;
+
+			all)
+				case $3 in
+					network)
+						curl -s $(cat $HOME/.gg/gg.json | jq '.tools[].network[].all' | tr -d '"') | bash
+					;;
+
+					web)
+						curl -s $(cat $HOME/.gg/gg.json | jq '.tools[].web[].all' | tr -d '"') | bash
+					;;
+					*)
+						printf "[+] Installation Candidate - Not Found...\n" | lolcat
+						exit 1
+					;;
+				esac
+			;;
+
+			*)
+				printf "[+] Installation Candidate - Not Found...\n" | lolcat
+				exit 1
+			;;
+		esac
+	;;
+
+	update)
+		tput reset clear
+
+		case $2 in
+			tools)
+				printf "[+] Updating Installed GitGun Tools\n" | lolcat
+				printf "-----------------------------------\n\n" | lolcat
+
+				printf "[+] Updating Installed Network Tools\n" | lolcat
+				[ -s $HOME/.gg/update-cache/gg_network.list ] && cat $HOME/.gg/update-cache/gg_network.list | xargs -I{} bash -c 'printf "[+] Updating {}\n" | lolcat; \
+				curl -s $(cat $HOME/.gg/gg.json | jq ".tools[].network[].{}" | tr -d "\"") | bash; \
+				printf "\n"'
+
+				printf "[+] Updating Installed Web Tools\n" | lolcat
+				[ -s $HOME/.gg/update-cache/gg_web.list ] && cat $HOME/.gg/update-cache/gg_web.list | xargs -I{} bash -c 'printf "[+] Updating {}\n" | lolcat; \
+				curl -s $(cat $HOME/.gg/gg.json | jq ".tools[].web[].{}" | tr -d "\"") | bash; \
+				printf "\n"'
+			;;
+
+			shell)
+				printf "[+] Updating GitGun Shell Profile\n" | lolcat
+				printf "-----------------------------------\n\n" | lolcat
+
+				wget -q https://raw.githubusercontent.com/m2sup3rn0va/gg/main/ggs/shell/bash_profile -O $HOME/.bash_profile
+
+				printf "[+] Updated GitGun Shell Profile\n" | lolcat
+			;;
+
+			*)
+				printf "[+] No Updating Candidate Found...\n" | lolcat
+				exit 1
+			;;
+		esac
+	;;
+esac
