@@ -1,19 +1,6 @@
 #! /bin/bash
 
 case $1 in
-	help|*)
-		tput reset clear
-		printf "WELCOME TO GITGUN(gg) - TOOLS INSTALLATION\n" | lolcat
-		echo -e "-----------------------------------------\n" | lolcat
-		printf "[+] Syntax: gg <OPTIONS> <TOOL_NAME>\n" | lolcat
-		printf "[+] Options:\n" | lolcat
-		printf "\t[>] help - Offers this page\n" | lolcat
-		printf "\t[>] list - Lists all available tools\n" | lolcat
-		printf "\t[>] install - Installs the tool\n" | lolcat
-		printf "\t[>] update - Updates the tool\n" | lolcat
-		printf "\n"
-	;;
-
 	list)
 		tput reset clear
 		net_temp=$(mktemp)
@@ -90,6 +77,8 @@ case $1 in
 
 			*)
 				printf "[+] Installation Candidate - Not Found...\n" | lolcat
+				printf "[+] Install tools from 'gg list' using 'gg install <TOOL_NAME>'...\n" | lolcat
+				printf "[+] You can also use 'gg install all network' or 'gg install all web'...\n" | lolcat
 				exit 1
 			;;
 		esac
@@ -125,8 +114,26 @@ case $1 in
 
 			*)
 				printf "[+] No Updating Candidate Found...\n" | lolcat
+				printf "[+] Only two options available - 'gg update tools' or 'gg update shell'\n" | lolcat
 				exit 1
 			;;
 		esac
+	;;
+
+	help|*)
+		tput reset clear
+		printf "WELCOME TO GITGUN(gg) - TOOLS INSTALLATION\n" | lolcat
+		echo -e "------------------------------------------\n" | lolcat
+		printf "[+] Syntax: gg <OPTIONS> <TOOL_NAME>\n" | lolcat
+		printf "[+] Options:\n" | lolcat
+		printf "\t[>] help - Offers this page\n" | lolcat
+		printf "\t[>] list - Lists all available tools\n" | lolcat
+		printf "\t[>] install - Installs the tools from 'gg list' or like 'gg install all network'\n" | lolcat
+		printf "\t[>] update - Updates the tool as 'gg update tools'\n" | lolcat
+		printf "[+] Extras:\n" | lolcat
+		printf "\t[>] gg install shell - Install My Custom Shell Scripts\n" | lolcat
+		printf "\t[>] gg install zsh - Install Oh-My-ZSH Theme on My Custom Shell\n" | lolcat
+		printf "\t[>] gg update shell - Updates my local bash_profile to recent one\n" | lolcat
+		printf "\n"
 	;;
 esac

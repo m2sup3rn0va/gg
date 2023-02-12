@@ -40,6 +40,7 @@ printf "\n"
 
 sudo chsh $USER --shell /usr/bin/zsh
 echo 'export SHELL="/usr/bin/zsh"' >> $HOME/.zshrc
+sed -i 's/alias gg=/#alias gg=/g' $ZSH/plugins/git/git.plugin.zsh
 
 printf "[+] ALL FINISHED [+]\n" | lolcat
 printf "[+] PLEASE LOGOFF AND LOGIN BACK [+]\n" | lolcat
