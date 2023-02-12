@@ -24,7 +24,8 @@ then
 	sudo ln -s $HOME/.gg/gg /usr/bin/gg
 
 	printf "\n[+] GitGun Installed Successfully...\n" | lolcat
-	printf "[+] Type 'gg help' to get going...\n" | lolcat
+	printf "[+] Type 'gg' or 'gg help' to get going...\n" | lolcat
+	printf "[+] Type 'gg list' to get the list of available tools...\n" | lolcat
 else
 	printf "\n[+] GitGun already installed...\n" | lolcat
 	printf "[+] Type 'gg help' to get going...\n" | lolcat
