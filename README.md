@@ -4,19 +4,13 @@
 
 > **Tags** : #toolkit, #penetration_testing
 
----
-
 <h2><b>Table Of Contents</b></h2>
 
 - [**Introduction**](#introduction)
 - [**Installation**](#installation)
 - [**Installed Cmdlets**](#installed-cmdlets)
 
----
-
 ## **Introduction**
-
----
 
 ![](img/gg.png)
 
@@ -24,11 +18,7 @@
 - It includes some of my favourite pentesting tools with my custom shell scripts and my `bash_profile`
 - Some of the tools include `tmux`, `git`, `vim`, `bat`, `exa` etc.
 
----
-
 ## **Installation**
-
----
 
 - First, install the pre-requisites: `sudo apt install -y wget curl lolcat git jq`
 - Then, run 
@@ -43,20 +33,10 @@ curl -s https://raw.githubusercontent.com/m2sup3rn0va/gg/main/install.sh | bash
 
 ## **Installed Cmdlets**
 
----
-
 - Once you install `shell` with `gg install shell`, you will get some extra commands like:
 	- Updating and upgrading the system in one command: `apt-update`
 	- Free ram using: `clearRam`
 
 ## **Future Updates**
 
----
-
 - Adding more tools
-
----
-
-<div style="page-break-after: always; visibility: hidden">
-\pagebreak
-</div>
