@@ -10,12 +10,12 @@ sudo nmap --script-updatedb
 
 if [ ! -f $HOME/.bash_profile ];
 then
-	if [ -f $HOME/.zshrc ] && [ $(cat $HOME/.zshrc | grep -q 'nsescripts') ];
+	if [ -f $HOME/.zshrc ];
 	then
-		printf "alias nsescripts='ll /usr/local/share/nmap/scripts'" >> $HOME/.zshrc
-	elif [ -f $HOME/.bashrc ] && [ $(cat $HOME/.bashrc | grep -q 'nsescripts') ];
+		(grep -q 'nsescripts' $HOME/.zshrc) || printf "alias nsescripts='ll /usr/local/share/nmap/scripts'\n" >> $HOME/.zshrc
+	elif [ -f $HOME/.bashrc ];
 	then
-		printf "alias nsescripts='ll /usr/local/share/nmap/scripts'" >> $HOME/.zshrc
+		(grep -q 'nsescripts' $HOME/.bashrc) || printf "alias nsescripts='ll /usr/local/share/nmap/scripts'\n" >> $HOME/.bashrc
 	fi
 fi
 

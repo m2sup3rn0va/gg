@@ -137,7 +137,7 @@ case $1 in
 	help|*)
 		tput reset clear
         printf "WELCOME TO GITGUN(gg) - THE TOOLKIT MANAGER\n\
--------------------------------------------\n\n\
+-------------------------------------------\n\
 A toolkit manager to install most used penetration testing\n\
 tools with least effort. It also includes custom shell scripts\n\
 for '.bashrc' and '.zshrc'.\n\n\
@@ -145,18 +145,18 @@ for '.bashrc' and '.zshrc'.\n\n\
 [+] Options:\n\
 ------------\n\n\
 [>] help - Offers this page\n\
----------------------------\n\n\
+---------------------------\n\
 [>] list - Lists all available tools\n\
  [>] shell - Lists 'shell' commands available to install\n\
  [>] tools - Lists 'tools' commands available to install\n\
---------------------------------------------------------\n\n\
+--------------------------------------------------------\n\
 [>] install - Install the tools\n\
  [>] all - Install all the tools available\n\
   [>] network - Install all the network tools available\n\
   [>] web - Install all the web tools available\n\
  [>] You can 'install' tools individually as well from\n\
  [>] 'gg list tools' or 'gg list shell'\n\
--------------------------------------------------------\n\n\
+-------------------------------------------------------\n\
 [>] update - To update installed tools\n\
  [>] tools - Updates all the installed tools\n\
  [>] shell - Updates the local 'bash_profile' to the latest one\n\
