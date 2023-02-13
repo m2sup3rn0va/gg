@@ -18,7 +18,7 @@
 
 ---
 
-![img/gg.png]
+![](img/gg.png)
 
 - `GitGun(gg)` is a command-line toolkit manager to `download`, `install` and `update` some of the most common pentesting tools
 - It includes some of my favourite pentesting tools with my custom shell scripts and my `bash_profile`
