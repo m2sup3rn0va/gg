@@ -1,4 +1,4 @@
-<h1><b>GitGun(gg) - Toolkit Manager<b></h1>
+<h1><b>GitGun(gg) - The Toolkit Manager<b></h1>
 
 > **Owner** : Mr. Sup3rN0vaa | 13-February-2023
 

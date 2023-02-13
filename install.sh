@@ -20,7 +20,7 @@ then
 	touch $HOME/.gg/update-cache/gg_network.list
 	touch $HOME/.gg/update-cache/gg_web.list
 
-	sudo ln -s $HOME/.gg/gg /usr/bin/gg
+	sudo ln -sf $HOME/.gg/gg /usr/bin/gg
 
 	printf "\n[+] GitGun Installed Successfully...\n" | lolcat
 	printf "[+] Type 'gg' or 'gg help' to get going...\n" | lolcat
