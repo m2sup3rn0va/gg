@@ -12,12 +12,12 @@ then
 
     if [ ! -f $HOME/.bash_profile ];
     then
-	    if [ -f $HOME/.zshrc ] && [ $(cat $HOME/.zshrc | grep -q 'export PATH') ];
+	    if [ -f $HOME/.zshrc ];
 	    then
-	    	printf 'export PATH="$PATH:$HOME/.local/bin"\n' >> $HOME/.zshrc
-	    elif [ -f $HOME/.bashrc ] && [ $(cat $HOME/.bashrc | grep -q 'export PATH') ];
+	    	(grep -q 'export PATH=' $HOME/.zshrc) || printf 'export PATH="$PATH:$HOME/.local/bin"\n' >> $HOME/.zshrc
+	    elif [ -f $HOME/.bashrc ];
 	    then
-	    	printf 'export PATH="$PATH:$HOME/.local/bin"\n' >> $HOME/.bashrc
+	    	(grep -q 'export PATH=' $HOME/.bashrc) || printf 'export PATH="$PATH:$HOME/.local/bin"\n' >> $HOME/.bashrc
 	    fi
 	fi
 fi

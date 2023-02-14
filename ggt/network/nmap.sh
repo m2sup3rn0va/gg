@@ -23,7 +23,7 @@ wget -q https://raw.githubusercontent.com/mubix/tools/master/nmap/scripts/smb-ch
 sudo mv -f smb-check-vulns.nse /usr/local/share/nmap/scripts/
 sudo nmap --script-updatedb
 
-(! grep -q 'nmap' $HOME/.gg/update-cache/gg_network.list) && printf "nmap\n" >> $HOME/.gg/update-cache/gg_network.list
+(grep -q 'nmap' $HOME/.gg/update-cache/gg_network.list) || printf "nmap\n" >> $HOME/.gg/update-cache/gg_network.list
 
 printf "\n[+] NMAP Installation Successful...\n" | lolcat
 printf "[+] Type 'nsescripts' to see the list of NMAP scripts...\n" | lolcat
