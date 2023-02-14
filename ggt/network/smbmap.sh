@@ -1,6 +1,6 @@
 #! /bin/bash
 
-CWD=$(PWD)
+CWD=$(pwd)
 
 sudo apt-get clean
 tput reset clear
@@ -32,22 +32,25 @@ fi
 
 printf "\n"
 
-sudo apt-get install -y git python3 python3-pip perl rpcbind smbclient samba polenum ldap-utils
+sudo apt-get install -y git python3 python3-pip
 
-if [ -d $HOME/.local/tools/snmpenum ];
+if [ -d $HOME/.local/tools/smbmap ];
 then
-	cd $HOME/.local/tools/snmpenum
-	git pull
+    cd $HOME/.local/tools/smbmap
+    git pull
 
-	printf "[+] SNMPEnum has been updated successfully...\n" | lolcat
+    printf "\n[+] SMBMap has been updated successfully...\n" | lolcat
 else
-	git clone https://github.com/ajohnston9/snmpenum.git $HOME/.local/tools/snmpenum
-	ln -sf $HOME/.local/tools/snmpenum/snmpenum.pl $HOME/.local/bin/snmpenum
+    git clone https://github.com/ShawnDEvans/smbmap.git $HOME/.local/tools/smbmap
+    python3 -m pip install -r $HOME/.local/tools/smbmap/requirements.txt --user --no-warn-script-location
 
-	(grep -q 'snmpenum' $HOME/.gg/update-cache/gg_network.list) || printf "snmpenum\n" >> $HOME/.gg/update-cache/gg_network.list
+    printf '#!/bin/bash\nsudo python3 $HOME/.local/tools/smbmap/smbmap.py $@' > $HOME/.local/bin/smbmap
+    sudo chmod +x $HOME/.local/bin/smbmap
 
-	printf "[+] SNMPEnum has been installed successfully...\n" | lolcat
-	printf "[+] Type 'snmpenum' to use...\n" | lolcat
+    (grep -q 'smbmap' $HOME/.gg/update-cache/gg_network.list) || printf "smbmap\n" >> $HOME/.gg/update-cache/gg_network.list
+
+    printf "\n[+] SMBMap has been installed successfully...\n" | lolcat
+    printf "[+] Type 'smbmap' to use...\n" | lolcat
 fi
 
 sudo chown -R $USER:$USER $HOME/.local/*

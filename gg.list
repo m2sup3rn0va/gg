@@ -1,0 +1,23 @@
+[+] NOTE: You are running a release version dated: 14-February-2023
+
+[+] GitGun(gg) - Custom Shell Scripts
+shell::https://raw.githubusercontent.com/m2sup3rn0va/gg/main/ggs/ggs.sh
+zsh::https://raw.githubusercontent.com/m2sup3rn0va/gg/main/ggs/ggs-zsh.sh
+
+[+] GitGun(gg) - Network Tools
+all_network::https://raw.githubusercontent.com/m2sup3rn0va/gg/main/ggt/network/all_network.sh
+crackmapexec::https://raw.githubusercontent.com/m2sup3rn0va/gg/main/ggt/network/crackmapexec.sh
+dsniff::https://raw.githubusercontent.com/m2sup3rn0va/gg/main/ggt/network/dsniff.sh
+enum4linux::https://raw.githubusercontent.com/m2sup3rn0va/gg/main/ggt/network/enum4linux.sh
+evil-winrm::https://raw.githubusercontent.com/m2sup3rn0va/gg/main/ggt/network/evil-winrm.sh
+impacket::https://raw.githubusercontent.com/m2sup3rn0va/gg/main/ggt/network/impacket.sh
+msfconsole::https://raw.githubusercontent.com/m2sup3rn0va/gg/main/ggt/network/msfconsole.sh
+nmap::https://raw.githubusercontent.com/m2sup3rn0va/gg/main/ggt/network/nmap.sh
+responder::https://raw.githubusercontent.com/m2sup3rn0va/gg/main/ggt/network/responder.sh
+smbmap::https://raw.githubusercontent.com/m2sup3rn0va/gg/main/ggt/network/smbmap.sh
+snmpenum::https://raw.githubusercontent.com/m2sup3rn0va/gg/main/ggt/network/snmpenum.sh
+
+[+] GitGun(gg) - Web Tools
+burp::https://raw.githubusercontent.com/m2sup3rn0va/gg/main/ggt/web/burp.sh
+zap::https://raw.githubusercontent.com/m2sup3rn0va/gg/main/ggt/web/zap.sh
+all_web::https://raw.githubusercontent.com/m2sup3rn0va/gg/main/ggt/web/all_web.sh

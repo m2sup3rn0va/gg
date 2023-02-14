@@ -8,6 +8,5 @@ curl -s $(cat $HOME/.gg/gg.json | jq '.tools[].network[].evil_winrm' | tr -d '"'
 curl -s $(cat $HOME/.gg/gg.json | jq '.tools[].network[].impacket' | tr -d '"') | bash
 curl -s $(cat $HOME/.gg/gg.json | jq '.tools[].network[].msfconsole' | tr -d '"') | bash
 curl -s $(cat $HOME/.gg/gg.json | jq '.tools[].network[].responder' | tr -d '"') | bash
-
-printf "[+] All Network Tools Installed\n" | lolcat
-printf "[+] Please logoff and login back\n" | lolcat
+curl -s $(cat $HOME/.gg/gg.json | jq '.tools[].network[].snmpenum' | tr -d '"') | bash
+curl -s $(cat $HOME/.gg/gg.json | jq '.tools[].network[].smbmap' | tr -d '"') | bash

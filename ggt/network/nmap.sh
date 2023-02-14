@@ -25,5 +25,5 @@ sudo nmap --script-updatedb
 
 (grep -q 'nmap' $HOME/.gg/update-cache/gg_network.list) || printf "nmap\n" >> $HOME/.gg/update-cache/gg_network.list
 
-printf "\n[+] NMAP Installation Successful...\n" | lolcat
-printf "[+] Type 'nsescripts' to see the list of NMAP scripts...\n" | lolcat
+printf "\n[+] NMAP has been installed successfully...\n" | lolcat
+printf "[+] Type 'nmap' to use and 'nsescripts' to see the list of NMAP scripts...\n" | lolcat

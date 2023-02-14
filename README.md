@@ -20,7 +20,7 @@
 
 ## **Installation**
 
-- First, install the pre-requisites: `sudo apt install -y wget curl lolcat git jq`
+- First, install the pre-requisites: `sudo apt-get install -y wget curl lolcat git`
 - Then, run 
 
 ```bash

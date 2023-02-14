@@ -10,5 +10,5 @@ python3 -m pip install -U pip crackmapexec --user --no-warn-script-location
 
 (grep -q 'crackmapexec' $HOME/.gg/update-cache/gg_network.list) || printf "crackmapexec\n" >> $HOME/.gg/update-cache/gg_network.list
 
-printf "\n[+] CrackMapExec Installed Successfully...\n" | lolcat
+printf "\n[+] CrackMapExec has been installed successfully...\n" | lolcat
 printf "[+] Type 'crackmapexec' to use...\n" | lolcat

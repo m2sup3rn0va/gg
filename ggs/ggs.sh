@@ -23,7 +23,7 @@ printf "\n"
 
 if [ ! -d $HOME/.fonts ];
 then
-    printf "[+] Installing Font... \n" | lolcat
+    printf "[+] Installing CaskaydiaCove Nerd Font... \n" | lolcat
     mkdir -p $HOME/.fonts 2> /dev/null
     wget -q https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/CascadiaCode/Bold/complete/Caskaydia%20Cove%20Nerd%20Font%20Complete%20Mono%20Bold.otf \
         -O $HOME/.fonts/CaskaydiaCoveNerdFont_MonoBold.otf
@@ -63,7 +63,7 @@ printf "\n"
 
 printf "[+] Installing Python3...\n" | lolcat
 sudo apt-get install -y python3 python3-pip python3-venv
-python3 -m pip install -U pip rich bs4 --user --no-warn-script-location
+python3 -m pip install -U pip --user --no-warn-script-location
 printf "\n"
 
 if [ ! -d $HOME/.tmux/ ];

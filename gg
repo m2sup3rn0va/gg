@@ -1,6 +1,11 @@
 #! /bin/bash
 
 case $1 in
+	version)
+		cat $HOME/.gg/gg.list | grep 'NOTE:' | lolcat
+		echo ""	
+	;;
+
 	list)
 		case $2 in
 			shell)
@@ -13,122 +18,117 @@ case $1 in
 
 			tools)
 				tput reset clear
-				net_temp=$(mktemp)
-				web_temp=$(mktemp)
 
-				cat $HOME/.gg/gg.json | jq '.tools[].network[] | keys[]' | tr -d '"' | grep -v all > $net_temp
-				cat $HOME/.gg/gg.json | jq '.tools[].web[] | keys[]' | tr -d '"' | grep -v all > $web_temp
+				printf "[+] GitGun(gg) - Available Network Tools\n" | lolcat
+				echo -e "----------------------------------------\n" | lolcat
+				cat $HOME/.gg/gg.list | grep '/network/' | grep -v all | awk -F'::' '{ print $1 }'
 
-				printf "[+] GitGun(gg) - Available Tools\n" | lolcat
-				echo -e "-------------------------------\n" | lolcat
-				cat $net_temp $web_temp
+				printf "\n[+] GitGun(gg) - Available Web Tools\n" | lolcat
+				echo -e "--------------------------------------\n" | lolcat
+				cat $HOME/.gg/gg.list | grep '/web/' | grep -v all | awk -F'::' '{ print $1 }'
 
-				rm -rf $net_temp $web_temp
-				unset net_temp web_temp
 			;;
 		esac
 	;;
 
 	install)
 		case $2 in
-			shell)
-				curl -s $(cat $HOME/.gg/gg.json | jq '.shell[].shell' | tr -d '"') | bash
-			;;
-
-			zsh)
-				curl -s $(cat $HOME/.gg/gg.json | jq '.shell[].zsh' | tr -d '"') | bash
-			;;
-
-			nmap)
-				curl -s $(cat $HOME/.gg/gg.json | jq '.tools[].network[].nmap' | tr -d '"') | bash
-			;;
-
-			crackmapexec)
-				curl -s $(cat $HOME/.gg/gg.json | jq '.tools[].network[].crackmapexec' | tr -d '"') | bash
-			;;
-
-			dsniff)
-				curl -s $(cat $HOME/.gg/gg.json | jq '.tools[].network[].dsniff' | tr -d '"') | bash
-			;;
-
-			enum4linux)
-				curl -s $(cat $HOME/.gg/gg.json | jq '.tools[].network[].enum4linux' | tr -d '"') | bash
-			;;
-
-			evil_winrm)
-				curl -s $(cat $HOME/.gg/gg.json | jq '.tools[].network[].evil_winrm' | tr -d '"') | bash
-			;;
-
-			impacket)
-				curl -s $(cat $HOME/.gg/gg.json | jq '.tools[].network[].impacket' | tr -d '"') | bash
-			;;
-
-			msfconsole)
-				curl -s $(cat $HOME/.gg/gg.json | jq '.tools[].network[].msfconsole' | tr -d '"') | bash
-			;;
-
-			responder)
-				curl -s $(cat $HOME/.gg/gg.json | jq '.tools[].network[].responder' | tr -d '"') | bash
-			;;
-
 			all)
 				case $3 in
 					network)
-						curl -s $(cat $HOME/.gg/gg.json | jq '.tools[].network[].all' | tr -d '"') | bash
+						tput reset clear
+						printf "[+] Installating All Network Tools\n" | lolcat
+						sleep 1
+						curl -s $(cat $HOME/.gg/gg.list | grep -w "all_network::" | awk -F'::' '{ print $2 }') | bash
 						printf "\n[+] Installation Successful - All Network Tools\n" | lolcat
+						printf "[+] Please Logoff and Login back\n" | lolcat
 					;;
 
 					web)
-						curl -s $(cat $HOME/.gg/gg.json | jq '.tools[].web[].all' | tr -d '"') | bash
+						tput reset clear
+						printf "[+] Installating All Web Tools\n" | lolcat
+						sleep 1
+						curl -s $(cat $HOME/.gg/gg.list | grep -w "all_web::" | awk -F'::' '{ print $2 }') | bash
 						printf "\n[+] Installation Successful - All Web Tools\n" | lolcat
+						printf "[+] Please Logoff and Login back\n" | lolcat
 					;;
+
 					*)
-						printf "[+] Installation Candidate - Not Found...\n" | lolcat
+						printf "[+] Specify your candidate (network/web)...\n" | lolcat
 						exit 1
 					;;
 				esac
 			;;
 
 			*)
-				printf "[+] Installation Candidate - Not Found...\n" | lolcat
-				printf "[+] Install tools from 'gg list' using 'gg install <TOOL_NAME>'...\n" | lolcat
-				printf "[+] You can also use 'gg install all network' or 'gg install all web'...\n" | lolcat
-				exit 1
+				if grep -wq "$2::" $HOME/.gg/gg.list;
+				then
+					curl -s $(cat $HOME/.gg/gg.list | grep -w "$2::" | awk -F'::' '{ print $2 }') | bash
+				else
+					printf "[+] Installation Candidate - Not Found...\n" | lolcat
+					printf "[+] Install tools from 'gg list' using 'gg install <TOOL_NAME>'...\n" | lolcat
+					printf "[+] You can also use 'gg install all network' or 'gg install all web'...\n" | lolcat
+					exit 1
+				fi
 			;;
 		esac
 	;;
 
 	update)
 		tput reset clear
-
 		case $2 in
+			gg)
+				printf "[+] Updating GitGun(gg)...\n" | lolcat
+				wget -q https://raw.githubusercontent.com/m2sup3rn0va/gg/main/gg.list -O $HOME/.gg/gg.list
+				printf "[+] GitGun(gg) has been updated...\n" | lolcat
+				printf "[+] Type 'gg' or 'gg help' to get going...\n" | lolcat
+				printf "[+] Type 'gg version' to get the version date...\n\n" | lolcat
+
+				cat $HOME/.gg/gg.list | grep 'NOTE:' | lolcat
+				echo ""
+			;;
+
 			tools)
-				printf "[+] Updating Installed GitGun Tools\n" | lolcat
+				printf "[+] Updating Installed GitGun(gg) Tools\n" | lolcat
 				echo -e "-----------------------------------\n" | lolcat
 
 				printf "[+] Updating Installed Network Tools\n" | lolcat
-				[ -s $HOME/.gg/update-cache/gg_network.list ] && cat $HOME/.gg/update-cache/gg_network.list | xargs -I{} bash -c 'printf "[+] Updating {}\n" | lolcat; \
-				curl -s $(cat $HOME/.gg/gg.json | jq ".tools[].network[].{}" | tr -d "\"") | bash; \
-				printf "\n"'
+				if [ -s $HOME/.gg/update-cache/gg_network.list ];
+				then
+					cat $HOME/.gg/update-cache/gg_network.list | \
+					xargs -I{} bash -c 'printf "[+] Updating {}\n" | lolcat; \
+					curl -s $(cat $HOME/.gg/gg.list | grep -w "{}::" | awk -F"::" "{ print $2 }") | bash; printf "\n"'
+				fi
 
 				printf "[+] Updating Installed Web Tools\n" | lolcat
-				[ -s $HOME/.gg/update-cache/gg_web.list ] && cat $HOME/.gg/update-cache/gg_web.list | xargs -I{} bash -c 'printf "[+] Updating {}\n" | lolcat; \
-				curl -s $(cat $HOME/.gg/gg.json | jq ".tools[].web[].{}" | tr -d "\"") | bash; \
-				printf "\n"'
+				if [ -s $HOME/.gg/update-cache/gg_web.list ];
+				then
+					cat $HOME/.gg/update-cache/gg_web.list | \
+					xargs -I{} bash -c 'printf "[+] Updating {}\n" | lolcat; \
+					curl -s $(cat $HOME/.gg/gg.list | grep -w "{}::" | awk -F"::" "{ print $2 }") | bash; printf "\n"'
+				fi
+
+				printf "\n[+] Updated All GitGun(gg) Installed Tools \n" | lolcat
 			;;
 
 			shell)
-				printf "[+] Updating GitGun Shell Profile\n" | lolcat
+				printf "[+] Updating GitGun(gg) Shell Profile\n" | lolcat
 				echo -e "---------------------------------\n" | lolcat
 
 				wget -q https://raw.githubusercontent.com/m2sup3rn0va/gg/main/ggs/shell/bash_profile -O $HOME/.bash_profile
+				wget -q https://raw.githubusercontent.com/m2sup3rn0va/gg/main/ggs/shell/vimrc -O $HOME/.vimrc
+				wget -q https://raw.githubusercontent.com/m2sup3rn0va/gg/main/ggs/shell/tmux.conf -O $HOME/.tmux/tmux.conf
+				wget -q https://raw.githubusercontent.com/m2sup3rn0va/gg/main/ggs/shell/apt-update -O $HOME/.local/bin/apt-update
+				chmod +x $HOME/.local/bin/apt-update
+			    wget -q https://raw.githubusercontent.com/m2sup3rn0va/gg/main/ggs/shell/clearRam -O $HOME/.local/bin/clearRam
+			    chmod +x $HOME/.local/bin/clearRam
 
-				printf "[+] Updated GitGun Shell Profile\n" | lolcat
+				printf "[+] Updated GitGun(gg) Shell Profile\n" | lolcat
 			;;
 
 			*)
 				printf "[+] No Updating Candidate Found...\n" | lolcat
-				printf "[+] Only two options available - 'gg update tools' or 'gg update shell'\n" | lolcat
+				printf "[+] Available Options - 'gg update gg/tools/shell'\n" | lolcat
 				exit 1
 			;;
 		esac
@@ -141,11 +141,14 @@ case $1 in
 A toolkit manager to install most used penetration testing\n\
 tools with least effort. It also includes custom shell scripts\n\
 for '.bashrc' and '.zshrc'.\n\n\
+Created By: Mr. Sup3rN0vaa\n\n\
 [+] Syntax: gg <OPTIONS> <TOOL_NAME>\n\n\
 [+] Options:\n\
 ------------\n\n\
 [>] help - Offers this page\n\
 ---------------------------\n\
+[>] version - Shows last release date of the local repository\n\
+---------------------------------------------------------------------\n\
 [>] list - Lists all available tools\n\
  [>] shell - Lists 'shell' commands available to install\n\
  [>] tools - Lists 'tools' commands available to install\n\
@@ -158,6 +161,7 @@ for '.bashrc' and '.zshrc'.\n\n\
  [>] 'gg list tools' or 'gg list shell'\n\
 -------------------------------------------------------\n\
 [>] update - To update installed tools\n\
+ [>] gg - Updates itself\n\
  [>] tools - Updates all the installed tools\n\
  [>] shell - Updates the local 'bash_profile' to the latest one\n\
 ---------------------------------------------------------------\n\n\
