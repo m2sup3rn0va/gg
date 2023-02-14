@@ -32,7 +32,7 @@ fi
 
 printf "\n"
 
-sudo apt-get install -y git python3 python3-pip
+sudo apt-get install -y git python3.10 python3-pip
 
 if [ -d $HOME/.local/tools/smbmap ];
 then

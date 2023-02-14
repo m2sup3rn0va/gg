@@ -32,7 +32,7 @@ fi
 
 printf "\n"
 
-sudo apt-get install -y git python3 python3-pip perl rpcbind smbclient samba polenum ldap-utils
+sudo apt-get install -y git python3.10 python3-pip perl rpcbind smbclient samba polenum ldap-utils
 
 if [ -d $HOME/.local/tools/enum4linux ];
 then

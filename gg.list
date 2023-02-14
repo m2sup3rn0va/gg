@@ -5,7 +5,6 @@ shell::https://raw.githubusercontent.com/m2sup3rn0va/gg/main/ggs/ggs.sh
 zsh::https://raw.githubusercontent.com/m2sup3rn0va/gg/main/ggs/ggs-zsh.sh
 
 [+] GitGun(gg) - Network Tools
-all_network::https://raw.githubusercontent.com/m2sup3rn0va/gg/main/ggt/network/all_network.sh
 crackmapexec::https://raw.githubusercontent.com/m2sup3rn0va/gg/main/ggt/network/crackmapexec.sh
 dsniff::https://raw.githubusercontent.com/m2sup3rn0va/gg/main/ggt/network/dsniff.sh
 enum4linux::https://raw.githubusercontent.com/m2sup3rn0va/gg/main/ggt/network/enum4linux.sh
@@ -20,4 +19,3 @@ snmpenum::https://raw.githubusercontent.com/m2sup3rn0va/gg/main/ggt/network/snmp
 [+] GitGun(gg) - Web Tools
 burp::https://raw.githubusercontent.com/m2sup3rn0va/gg/main/ggt/web/burp.sh
 zap::https://raw.githubusercontent.com/m2sup3rn0va/gg/main/ggt/web/zap.sh
-all_web::https://raw.githubusercontent.com/m2sup3rn0va/gg/main/ggt/web/all_web.sh

@@ -2,32 +2,53 @@
 
 case $1 in
 	version)
+		tput reset clear
+
+		printf "[+] GITGUN(gg) - THE TOOLKIT MANAGER\n" | lolcat
+		echo -e "------------------------------------\n" | lolcat
 		cat $HOME/.gg/gg.list | grep 'NOTE:' | lolcat
-		echo ""	
+		echo ""
 	;;
 
 	list)
 		case $2 in
 			shell)
 				tput reset clear
-				printf "[+] GitGun(gg) - Available Shell Scripts\n" | lolcat
-				echo -e "----------------------------------------\n" | lolcat
+
+				printf "[+] GITGUN(gg) - THE TOOLKIT MANAGER\n" | lolcat
+				echo -e "------------------------------------\n" | lolcat
+
+				printf "[+] Available Shell Scripts\n" | lolcat
+				echo -e "---------------------------\n" | lolcat
 				printf "shell\n"
 				printf "zsh\n"
+				echo ""
 			;;
 
 			tools)
 				tput reset clear
 
-				printf "[+] GitGun(gg) - Available Network Tools\n" | lolcat
-				echo -e "----------------------------------------\n" | lolcat
+				printf "[+] GITGUN(gg) - THE TOOLKIT MANAGER\n" | lolcat
+				echo -e "------------------------------------\n" | lolcat
+
+				printf "[+] Available Network Tools\n" | lolcat
+				echo -e "---------------------------\n" | lolcat
 				cat $HOME/.gg/gg.list | grep '/network/' | grep -v all | awk -F'::' '{ print $1 }'
 
-				printf "\n[+] GitGun(gg) - Available Web Tools\n" | lolcat
-				echo -e "--------------------------------------\n" | lolcat
+				printf "\n[+] Available Web Tools\n" | lolcat
+				echo -e "-------------------------\n" | lolcat
 				cat $HOME/.gg/gg.list | grep '/web/' | grep -v all | awk -F'::' '{ print $1 }'
-
+				echo ""
 			;;
+
+			*)
+				tput reset clear
+
+				printf "[+] GITGUN(gg) - THE TOOLKIT MANAGER\n" | lolcat
+				echo -e "------------------------------------\n" | lolcat
+				printf "[+] Nothing to list\n" | lolcat
+				printf "[+] Available Options - 'gg list tools/shell'\n" | lolcat
+				echo ""
 		esac
 	;;
 
@@ -39,7 +60,8 @@ case $1 in
 						tput reset clear
 						printf "[+] Installating All Network Tools\n" | lolcat
 						sleep 1
-						curl -s $(cat $HOME/.gg/gg.list | grep -w "all_network::" | awk -F'::' '{ print $2 }') | bash
+						grep '/network/' $HOME/.gg/gg.list | awk -F'::' '{ print $2}' | \
+						xargs -I{} bash -c 'curl -s {} | bash'
 						printf "\n[+] Installation Successful - All Network Tools\n" | lolcat
 						printf "[+] Please Logoff and Login back\n" | lolcat
 					;;
@@ -48,26 +70,38 @@ case $1 in
 						tput reset clear
 						printf "[+] Installating All Web Tools\n" | lolcat
 						sleep 1
-						curl -s $(cat $HOME/.gg/gg.list | grep -w "all_web::" | awk -F'::' '{ print $2 }') | bash
+						grep '/web/' $HOME/.gg/gg.list | awk -F'::' '{ print $2}' | \
+						xargs -I{} bash -c 'curl -s {} | bash'
 						printf "\n[+] Installation Successful - All Web Tools\n" | lolcat
 						printf "[+] Please Logoff and Login back\n" | lolcat
 					;;
 
 					*)
-						printf "[+] Specify your candidate (network/web)...\n" | lolcat
+						tput reset clear
+
+						printf "[+] GITGUN(gg) - THE TOOLKIT MANAGER\n" | lolcat
+						echo -e "------------------------------------\n" | lolcat
+						printf "[+] Nothing to install\n" | lolcat
+						printf "[+] Available Options - 'gg install all network/web'\n" | lolcat
+						echo ""
 						exit 1
 					;;
 				esac
 			;;
 
 			*)
-				if grep -wq "$2::" $HOME/.gg/gg.list;
+				if grep -wq "$2:" $HOME/.gg/gg.list;
 				then
-					curl -s $(cat $HOME/.gg/gg.list | grep -w "$2::" | awk -F'::' '{ print $2 }') | bash
+					curl -s $(sed -n "s/$2:://p" $HOME/.gg/gg.list) | bash
+					echo ""
 				else
-					printf "[+] Installation Candidate - Not Found...\n" | lolcat
-					printf "[+] Install tools from 'gg list' using 'gg install <TOOL_NAME>'...\n" | lolcat
-					printf "[+] You can also use 'gg install all network' or 'gg install all web'...\n" | lolcat
+					tput reset clear
+					printf "[+] GITGUN(gg) - THE TOOLKIT MANAGER\n" | lolcat
+					echo -e "------------------------------------\n" | lolcat
+					printf "[+] Nothing to install\n" | lolcat
+					printf "[+] Install tools from 'gg list' using 'gg install <TOOL_NAME>'\n" | lolcat
+					printf "[+] You can also use 'gg install all network' or 'gg install all web'\n" | lolcat
+					echo ""
 					exit 1
 				fi
 			;;
@@ -75,60 +109,87 @@ case $1 in
 	;;
 
 	update)
-		tput reset clear
 		case $2 in
 			gg)
-				printf "[+] Updating GitGun(gg)...\n" | lolcat
+				tput reset clear
+
+				printf "[+] GITGUN(gg) - THE TOOLKIT MANAGER\n" | lolcat
+				echo -e "------------------------------------\n" | lolcat
+
+				printf "[+] Updating GitGun(gg)\n" | lolcat
 				wget -q https://raw.githubusercontent.com/m2sup3rn0va/gg/main/gg.list -O $HOME/.gg/gg.list
-				printf "[+] GitGun(gg) has been updated...\n" | lolcat
-				printf "[+] Type 'gg' or 'gg help' to get going...\n" | lolcat
-				printf "[+] Type 'gg version' to get the version date...\n\n" | lolcat
+				printf "[+] GitGun(gg) has been updated\n\n" | lolcat
+				printf "[+] Type 'gg' or 'gg help' to get going\n" | lolcat
+				printf "[+] Type 'gg version' to get the version date\n\n" | lolcat
 
 				cat $HOME/.gg/gg.list | grep 'NOTE:' | lolcat
 				echo ""
 			;;
 
 			tools)
-				printf "[+] Updating Installed GitGun(gg) Tools\n" | lolcat
-				echo -e "-----------------------------------\n" | lolcat
+				tput reset clear
 
-				printf "[+] Updating Installed Network Tools\n" | lolcat
+				printf "[+] GITGUN(gg) - THE TOOLKIT MANAGER\n" | lolcat
+				echo -e "------------------------------------\n" | lolcat
+
 				if [ -s $HOME/.gg/update-cache/gg_network.list ];
 				then
-					cat $HOME/.gg/update-cache/gg_network.list | \
-					xargs -I{} bash -c 'printf "[+] Updating {}\n" | lolcat; \
-					curl -s $(cat $HOME/.gg/gg.list | grep -w "{}::" | awk -F"::" "{ print $2 }") | bash; printf "\n"'
+					printf "[+] Updating Installed Network Tools\n" | lolcat
+
+					cat $HOME/.gg/update-cache/gg_network.list |\
+					xargs -I{} bash -c 'printf "[+] Updating {}\n" | lolcat;\
+					curl -s $(sed -n "s/{}:://p" $HOME/.gg/gg.list) | bash;\
+					printf "\n"'
+				else
+					printf "[+] Network Tools - No Installation Candidate\n" | lolcat
 				fi
 
-				printf "[+] Updating Installed Web Tools\n" | lolcat
 				if [ -s $HOME/.gg/update-cache/gg_web.list ];
 				then
-					cat $HOME/.gg/update-cache/gg_web.list | \
-					xargs -I{} bash -c 'printf "[+] Updating {}\n" | lolcat; \
-					curl -s $(cat $HOME/.gg/gg.list | grep -w "{}::" | awk -F"::" "{ print $2 }") | bash; printf "\n"'
-				fi
+					printf "[+] Updating Installed Web Tools\n" | lolcat
 
-				printf "\n[+] Updated All GitGun(gg) Installed Tools \n" | lolcat
+					cat $HOME/.gg/update-cache/gg_web.list |\
+					xargs -I{} bash -c 'printf "[+] Updating {}\n" | lolcat;\
+					curl -s $(sed -n "s/{}:://p" $HOME/.gg/gg.list) | bash;\
+					printf "\n"'
+				else
+					printf "[+] Web Tools - No Installation Candidate\n" | lolcat
+				fi
+				echo ""
 			;;
 
 			shell)
-				printf "[+] Updating GitGun(gg) Shell Profile\n" | lolcat
-				echo -e "---------------------------------\n" | lolcat
+				printf "[+] GITGUN(gg) - THE TOOLKIT MANAGER\n" | lolcat
+				echo -e "------------------------------------\n" | lolcat
 
-				wget -q https://raw.githubusercontent.com/m2sup3rn0va/gg/main/ggs/shell/bash_profile -O $HOME/.bash_profile
-				wget -q https://raw.githubusercontent.com/m2sup3rn0va/gg/main/ggs/shell/vimrc -O $HOME/.vimrc
-				wget -q https://raw.githubusercontent.com/m2sup3rn0va/gg/main/ggs/shell/tmux.conf -O $HOME/.tmux/tmux.conf
-				wget -q https://raw.githubusercontent.com/m2sup3rn0va/gg/main/ggs/shell/apt-update -O $HOME/.local/bin/apt-update
-				chmod +x $HOME/.local/bin/apt-update
-			    wget -q https://raw.githubusercontent.com/m2sup3rn0va/gg/main/ggs/shell/clearRam -O $HOME/.local/bin/clearRam
-			    chmod +x $HOME/.local/bin/clearRam
+				if [ -f $HOME/.bash_profile ];
+				then
+					printf "[+] Updating GitGun(gg) Shell Profile\n" | lolcat
+					echo -e "---------------------------------\n" | lolcat
 
-				printf "[+] Updated GitGun(gg) Shell Profile\n" | lolcat
+					wget -q https://raw.githubusercontent.com/m2sup3rn0va/gg/main/ggs/shell/bash_profile -O $HOME/.bash_profile
+					wget -q https://raw.githubusercontent.com/m2sup3rn0va/gg/main/ggs/shell/vimrc -O $HOME/.vimrc
+					wget -q https://raw.githubusercontent.com/m2sup3rn0va/gg/main/ggs/shell/tmux.conf -O $HOME/.tmux/tmux.conf
+					wget -q https://raw.githubusercontent.com/m2sup3rn0va/gg/main/ggs/shell/apt-update -O $HOME/.local/bin/apt-update
+					chmod +x $HOME/.local/bin/apt-update
+				    wget -q https://raw.githubusercontent.com/m2sup3rn0va/gg/main/ggs/shell/clearRam -O $HOME/.local/bin/clearRam
+				    chmod +x $HOME/.local/bin/clearRam
+
+				    printf "[+] Updated GitGun(gg) Shell Profile\n" | lolcat
+				else
+					printf "[+] Nothing to update\n" | lolcat
+				fi
+				echo ""
 			;;
 
 			*)
-				printf "[+] No Updating Candidate Found...\n" | lolcat
+				tput reset clear
+
+				printf "[+] GITGUN(gg) - THE TOOLKIT MANAGER\n" | lolcat
+				echo -e "------------------------------------\n" | lolcat
+				printf "[+] Nothing to update\n" | lolcat
 				printf "[+] Available Options - 'gg update gg/tools/shell'\n" | lolcat
+				echo ""
 				exit 1
 			;;
 		esac
@@ -141,7 +202,8 @@ case $1 in
 A toolkit manager to install most used penetration testing\n\
 tools with least effort. It also includes custom shell scripts\n\
 for '.bashrc' and '.zshrc'.\n\n\
-Created By: Mr. Sup3rN0vaa\n\n\
+>>> Created By: Mr. Sup3rN0vaa <<<\n\
+----------------------------------\n\n\
 [+] Syntax: gg <OPTIONS> <TOOL_NAME>\n\n\
 [+] Options:\n\
 ------------\n\n\

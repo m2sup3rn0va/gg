@@ -1,6 +1,6 @@
 #! /bin/bash
 
-CWD=$(PWD)
+CWD=$(pwd)
 
 sudo apt-get clean
 tput reset clear
@@ -32,8 +32,7 @@ fi
 
 printf "\n"
 
-sudo apt-get install -y git python3 python3-pip
-python3 -m pip install -U pip impacket
+sudo apt-get install -y git python3.10 python3-pip
 
 if [ -d $HOME/.local/tools/impacket ];
 then
@@ -43,7 +42,14 @@ then
     printf "\n[+] Impacket has been updated successfully...\n" | lolcat
 else
     git clone https://github.com/fortra/impacket.git $HOME/.local/tools/impacket
-    python3 -m pip install -r $HOME/.local/tools/impacket/requirements.txt --user --no-warn-script-location
+    cd $HOME/.local/tools/impacket
+    python3 -m pip install -r requirements.txt --user --no-warn-script-location
+    sudo python3 setup.py build
+    sudo python3 setup.py install
+
+    sudo chown -R $USER:$USER $HOME/.local/*
+
+    ln -sf $HOME/.local/tools/impacket/examples/* $HOME/.local/bin/
 
     (grep -q 'impacket' $HOME/.gg/update-cache/gg_network.list) && printf "impacket\n" >> $HOME/.gg/update-cache/gg_network.list
 
