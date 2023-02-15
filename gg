@@ -12,6 +12,31 @@ case $1 in
 
 	list)
 		case $2 in
+			help)
+				tput reset clear
+
+				printf "WELCOME TO GITGUN(gg) - THE TOOLKIT MANAGER\n\
+-------------------------------------------\n\
+A toolkit manager to install most used penetration testing\n\
+tools with least effort. It also includes custom shell scripts\n\
+for '.bashrc' and '.zshrc'.\n\n\
+>>> Created By: Mr. Sup3rN0vaa <<<\n\
+----------------------------------\n\n\
+Syntax:\n\
+-------\n\
+gg list <OPTIONS>\n\n\
+Options:\n\
+--------\n\
+help - Offers this page\n\
+shell - Lists shell profile available to install\n\
+tools - Lists all tools available to install\n\n\
+Examples:\n\
+---------\n\
+'gg list tools' - List all the tools available to install\n\
+'gg list shell' - List all the shell scripts available to install\n\n\
+To help, do reach out to me on 'Mr. Sup3rN0vaa <m2sup3rn0va@gmail.com>'\n\n" | lolcat
+			;;
+
 			shell)
 				tput reset clear
 
@@ -47,31 +72,52 @@ case $1 in
 				printf "[+] GITGUN(gg) - THE TOOLKIT MANAGER\n" | lolcat
 				echo -e "------------------------------------\n" | lolcat
 				printf "[+] Nothing to list\n" | lolcat
-				printf "[+] Available Options - 'gg list tools/shell'\n" | lolcat
+				printf "[+] Type: 'gg list help' for reference\n" | lolcat
 				echo ""
 		esac
 	;;
 
 	install)
 		case $2 in
+			help)
+				tput reset clear
+
+				printf "WELCOME TO GITGUN(gg) - THE TOOLKIT MANAGER\n\
+-------------------------------------------\n\
+A toolkit manager to install most used penetration testing\n\
+tools with least effort. It also includes custom shell scripts\n\
+for '.bashrc' and '.zshrc'.\n\n\
+>>> Created By: Mr. Sup3rN0vaa <<<\n\
+----------------------------------\n\n\
+Syntax:\n\
+-------\n\
+gg install <OPTIONS>\n\n\
+Options:\n\
+--------\n\
+help - Offers this page\n\
+all - Installs all the tools in arsenal\n\n\
+Examples:\n\
+---------\n\
+'gg install all network' - Install all the network tools\n\
+'gg install all web' - Install all the web tools\n\
+'gg install nmap' - Install tools one-by-one. Get the tool-list from 'gg list tools'\n\n\
+To help, do reach out to me on 'Mr. Sup3rN0vaa <m2sup3rn0va@gmail.com>'\n\n" | lolcat
+			;;
+
 			all)
 				case $3 in
 					network)
 						grep '/network/' $HOME/.gg/gg.list | awk -F'::' '{ print $2}' | \
 						xargs -I{} bash -c 'curl -s {} | bash'
 
-						tput reset clear
-						printf "\n[+] Installation Successful - All Network Tools\n" | lolcat
-						printf "[+] Please Logoff and Login back\n" | lolcat
+						printf "[+] Please Logoff and Login back\n\n" | lolcat
 					;;
 
 					web)
 						grep '/web/' $HOME/.gg/gg.list | awk -F'::' '{ print $2}' | \
 						xargs -I{} bash -c 'curl -s {} | bash'
 						
-						tput reset clear
-						printf "\n[+] Installation Successful - All Web Tools\n" | lolcat
-						printf "[+] Please Logoff and Login back\n" | lolcat
+						printf "[+] Please Logoff and Login back\n\n" | lolcat
 					;;
 
 					*)
@@ -81,7 +127,7 @@ case $1 in
 						echo -e "------------------------------------\n" | lolcat
 
 						printf "[+] Nothing to install\n" | lolcat
-						printf "[+] Available Options - 'gg install all network/web'\n" | lolcat
+						printf "[+] Type: 'gg install help' for reference\n" | lolcat
 						echo ""
 						exit 1
 					;;
@@ -98,8 +144,7 @@ case $1 in
 					printf "[+] GITGUN(gg) - THE TOOLKIT MANAGER\n" | lolcat
 					echo -e "------------------------------------\n" | lolcat
 					printf "[+] Nothing to install\n" | lolcat
-					printf "[+] Install tools from 'gg list' using 'gg install <TOOL_NAME>'\n" | lolcat
-					printf "[+] You can also use 'gg install all network' or 'gg install all web'\n" | lolcat
+					printf "[+] Type: 'gg install help' for reference\n" | lolcat
 					echo ""
 					exit 1
 				fi
@@ -109,6 +154,33 @@ case $1 in
 
 	update)
 		case $2 in
+			help)
+				tput reset clear
+
+				printf "WELCOME TO GITGUN(gg) - THE TOOLKIT MANAGER\n\
+-------------------------------------------\n\
+A toolkit manager to install most used penetration testing\n\
+tools with least effort. It also includes custom shell scripts\n\
+for '.bashrc' and '.zshrc'.\n\n\
+>>> Created By: Mr. Sup3rN0vaa <<<\n\
+----------------------------------\n\n\
+Syntax:\n\
+-------\n\
+gg update <OPTIONS>\n\n\
+Options:\n\
+--------\n\
+help - Offers this page\n\
+gg - Updates itself\n\
+tools - Updates all the tools installed via GitGun\n\
+shell - Updates the local shell profile\n\n\
+Examples:\n\
+---------\n\
+'gg update tools' - Updates all the tools installed via GitGun(gg)\n\
+'gg update gg' - Updates itself\n\
+'gg update shell' - Updates the local shell profile\n\n\
+To help, do reach out to me on 'Mr. Sup3rN0vaa <m2sup3rn0va@gmail.com>'\n\n" | lolcat
+			;;
+
 			gg)
 				curl -s https://raw.githubusercontent.com/m2sup3rn0va/gg/main/install.sh | bash
 			;;
@@ -168,7 +240,7 @@ case $1 in
 				printf "[+] GITGUN(gg) - THE TOOLKIT MANAGER\n" | lolcat
 				echo -e "------------------------------------\n" | lolcat
 				printf "[+] Nothing to update\n" | lolcat
-				printf "[+] Available Options - 'gg update gg/tools/shell'\n" | lolcat
+				printf "[+] Type: 'gg update help' for reference\n" | lolcat
 				echo ""
 				exit 1
 			;;
@@ -184,40 +256,26 @@ tools with least effort. It also includes custom shell scripts\n\
 for '.bashrc' and '.zshrc'.\n\n\
 >>> Created By: Mr. Sup3rN0vaa <<<\n\
 ----------------------------------\n\n\
-[+] Syntax: gg <OPTIONS> <TOOL_NAME>\n\n\
-[+] Options:\n\
-------------\n\n\
-[>] help - Offers this page\n\
----------------------------\n\
-[>] version - Shows last release date of the local repository\n\
----------------------------------------------------------------------\n\
-[>] list - Lists all available tools\n\
- [>] shell - Lists 'shell' commands available to install\n\
- [>] tools - Lists 'tools' commands available to install\n\
---------------------------------------------------------\n\
-[>] install - Install the tools\n\
- [>] all - Install all the tools available\n\
-  [>] network - Install all the network tools available\n\
-  [>] web - Install all the web tools available\n\
- [>] You can 'install' tools individually as well from\n\
- [>] 'gg list tools' or 'gg list shell'\n\
--------------------------------------------------------\n\
-[>] update - To update installed tools\n\
- [>] gg - Updates itself\n\
- [>] tools - Updates all the installed tools\n\
- [>] shell - Updates the local 'bash_profile' to the latest one\n\
----------------------------------------------------------------\n\n\
-[+] Examples:\n\
- [>] 'gg list tools' - List all the tools available to install\n\
- [>] 'gg list shell' - List all the shell scripts available to install\n\
- [>] 'gg install shell' - Install My Custom Shell Scripts\n\
- [>] 'gg install zsh' - Install Oh-My-ZSH Theme on My Custom Shell\n\
- [>] 'gg install nmap' - Installs 'nmap' from 'gg list tools'\n\
- [>] 'gg install all network' - Installs all the network tools available in 'gg list tools'\n\
- [>] 'gg install all web' - Installs all the web tools available in 'gg list tools'\n\
- [>] 'gg update shell' - Updates my local bash_profile to recent one\n\
- [>] 'gg update tools' - Updates all the installed tools\n\n\
- To help, do reach out to me on 'Mr. Sup3rN0vaa <m2sup3rn0va@gmail.com>'
-\n" | lolcat
+Syntax:\n\
+-------\n\
+gg <OPTIONS> <TOOL_NAME>\n\n\
+Options:\n\
+--------\n\
+help - Offers this page\n\
+version - Shows last release date of the local repository\n\
+list - Lists all available tools\n\
+install - Install the tools\n\
+update - To update installed tools\n\n\
+Examples:\n\
+---------\n\
+'gg' or 'gg help' - Offers this page\n\
+'gg version' - Lists current installed version\n\
+'gg install shell' - Install My Custom Shell Scripts\n\
+'gg install nmap' - Installs 'nmap' from 'gg list tools'\n\
+'gg install all network' - Installs all the network tools available in 'gg list tools'\n\
+'gg install all web' - Installs all the web tools available in 'gg list tools'\n\
+'gg update shell' - Updates my local bash_profile to recent one\n\
+'gg update tools' - Updates all the installed tools\n\n\
+ To help, do reach out to me on 'Mr. Sup3rN0vaa <m2sup3rn0va@gmail.com>'\n\n" | lolcat
 	;;
 esac
