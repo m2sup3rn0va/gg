@@ -35,8 +35,8 @@ else
 	chmod +x $HOME/.gg/gg
 	sudo ln -sf $HOME/.gg/gg /usr/bin/gg
 
-	printf "\n[+] GitGun(gg) has been updated successfully...\n" | lolcat
-	printf "[+] Type 'gg' or 'gg help' to get going...\n\n" | lolcat
+	printf "[+] GitGun(gg) has been updated successfully...\n" | lolcat
+	printf "[+] Type 'gg' or 'gg help' to get going...\n" | lolcat
 	printf "[+] Type 'gg version' to get the version date\n\n" | lolcat
 
 	cat $HOME/.gg/gg.list | grep 'NOTE:' | lolcat
