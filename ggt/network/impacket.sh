@@ -53,6 +53,6 @@ fi
 
 printf "\n[+] All the 'impacket' scripts are in '$HOME/.local/tools/impacket'\n\n" | lolcat
 
-(grep -q 'impacket' $HOME/.gg/update-cache/gg_network.list) && printf "impacket\n" >> $HOME/.gg/update-cache/gg_network.list
+(grep -q 'impacket' $HOME/.gg/update-cache/gg_network.list) || printf "impacket\n" >> $HOME/.gg/update-cache/gg_network.list
 sudo chown -R $USER:$USER $HOME/.local/*
 cd $CWD
