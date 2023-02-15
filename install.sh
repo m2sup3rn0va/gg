@@ -9,9 +9,12 @@ fi
 sudo apt-get clean
 tput reset clear
 
+printf "[+] GITGUN(gg) - THE TOOLKIT MANAGER\n" | lolcat
+echo -e "------------------------------------\n" | lolcat
+
 if [ ! -d $HOME/.gg ];
 then
-	printf "[+] Initiating Installation...\n" | lolcat
+	printf "[+] Initiating Installation\n" | lolcat
 
 	mkdir -p $HOME/.gg/update-cache
 	touch $HOME/.gg/update-cache/gg_network.list
@@ -26,10 +29,8 @@ then
 	printf "[+] Type 'gg' or 'gg help' to get going...\n" | lolcat
 	printf "[+] Type 'gg version' to get the version date...\n" | lolcat
 else
-	printf "[+] GITGUN(gg) - THE TOOLKIT MANAGER\n" | lolcat
-	echo -e "------------------------------------\n" | lolcat
-
 	printf "[+] Updating GitGun(gg)\n" | lolcat
+	
 	wget -q https://raw.githubusercontent.com/m2sup3rn0va/gg/main/gg -O $HOME/.gg/gg
 	wget -q https://raw.githubusercontent.com/m2sup3rn0va/gg/main/gg.list -O $HOME/.gg/gg.list
 	chmod +x $HOME/.gg/gg
