@@ -57,21 +57,19 @@ case $1 in
 			all)
 				case $3 in
 					network)
-						tput reset clear
-						printf "[+] Installating All Network Tools\n" | lolcat
-						sleep 1
 						grep '/network/' $HOME/.gg/gg.list | awk -F'::' '{ print $2}' | \
 						xargs -I{} bash -c 'curl -s {} | bash'
+
+						tput reset clear
 						printf "\n[+] Installation Successful - All Network Tools\n" | lolcat
 						printf "[+] Please Logoff and Login back\n" | lolcat
 					;;
 
 					web)
-						tput reset clear
-						printf "[+] Installating All Web Tools\n" | lolcat
-						sleep 1
 						grep '/web/' $HOME/.gg/gg.list | awk -F'::' '{ print $2}' | \
 						xargs -I{} bash -c 'curl -s {} | bash'
+						
+						tput reset clear
 						printf "\n[+] Installation Successful - All Web Tools\n" | lolcat
 						printf "[+] Please Logoff and Login back\n" | lolcat
 					;;
@@ -81,6 +79,7 @@ case $1 in
 
 						printf "[+] GITGUN(gg) - THE TOOLKIT MANAGER\n" | lolcat
 						echo -e "------------------------------------\n" | lolcat
+
 						printf "[+] Nothing to install\n" | lolcat
 						printf "[+] Available Options - 'gg install all network/web'\n" | lolcat
 						echo ""
@@ -115,31 +114,28 @@ case $1 in
 			;;
 
 			tools)
-				tput reset clear
-
-				printf "[+] GITGUN(gg) - THE TOOLKIT MANAGER\n" | lolcat
-				echo -e "------------------------------------\n" | lolcat
-
 				if [ -s $HOME/.gg/update-cache/gg_network.list ];
 				then
-					printf "[+] Updating Installed Network Tools\n" | lolcat
-
 					cat $HOME/.gg/update-cache/gg_network.list |\
-					xargs -I{} bash -c 'printf "[+] Updating {}\n" | lolcat;\
-					curl -s $(sed -n "s/{}:://p" $HOME/.gg/gg.list) | bash;\
+					xargs -I{} bash -c 'curl -s $(sed -n "s/{}:://p" $HOME/.gg/gg.list) | bash;\
 					printf "\n"'
+
+					tput reset clear
+					printf "\n[+] Updation Successful - All Network Tools\n" | lolcat
+					printf "[+] Please Logoff and Login back\n" | lolcat
 				else
 					printf "[+] Network Tools - No Installation Candidate\n" | lolcat
 				fi
 
 				if [ -s $HOME/.gg/update-cache/gg_web.list ];
 				then
-					printf "[+] Updating Installed Web Tools\n" | lolcat
-
 					cat $HOME/.gg/update-cache/gg_web.list |\
-					xargs -I{} bash -c 'printf "[+] Updating {}\n" | lolcat;\
-					curl -s $(sed -n "s/{}:://p" $HOME/.gg/gg.list) | bash;\
+					xargs -I{} bash -c 'curl -s $(sed -n "s/{}:://p" $HOME/.gg/gg.list) | bash;\
 					printf "\n"'
+
+					tput reset clear
+					printf "\n[+] Updation Successful - All Web Tools\n" | lolcat
+					printf "[+] Please Logoff and Login back\n" | lolcat
 				else
 					printf "[+] Web Tools - No Installation Candidate\n" | lolcat
 				fi
