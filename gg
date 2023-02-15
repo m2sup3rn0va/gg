@@ -111,19 +111,7 @@ case $1 in
 	update)
 		case $2 in
 			gg)
-				tput reset clear
-
-				printf "[+] GITGUN(gg) - THE TOOLKIT MANAGER\n" | lolcat
-				echo -e "------------------------------------\n" | lolcat
-
-				printf "[+] Updating GitGun(gg)\n" | lolcat
-				wget -q https://raw.githubusercontent.com/m2sup3rn0va/gg/main/gg.list -O $HOME/.gg/gg.list
-				printf "[+] GitGun(gg) has been updated\n\n" | lolcat
-				printf "[+] Type 'gg' or 'gg help' to get going\n" | lolcat
-				printf "[+] Type 'gg version' to get the version date\n\n" | lolcat
-
-				cat $HOME/.gg/gg.list | grep 'NOTE:' | lolcat
-				echo ""
+				curl -s https://raw.githubusercontent.com/m2sup3rn0va/gg/main/install.sh | bash
 			;;
 
 			tools)
@@ -159,6 +147,7 @@ case $1 in
 			;;
 
 			shell)
+				tput reset clear
 				printf "[+] GITGUN(gg) - THE TOOLKIT MANAGER\n" | lolcat
 				echo -e "------------------------------------\n" | lolcat
 
