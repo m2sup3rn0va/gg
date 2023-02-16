@@ -95,21 +95,25 @@ gg install <OPTIONS>\n\n\
 Options:\n\
 --------\n\
 help - Offers this page\n\
-all - Installs all the tools in arsenal\n\n\
+tools - Installs all the tools in arsenal\n\n\
 Examples:\n\
 ---------\n\
-'gg install all network' - Install all the network tools\n\
-'gg install all web' - Install all the web tools\n\
+'gg install tools network' - Install all the network tools\n\
+'gg install tools web' - Install all the web tools\n\
 'gg install nmap' - Install tools one-by-one. Get the tool-list from 'gg list tools'\n\n\
 To help, do reach out to me on 'Mr. Sup3rN0vaa <m2sup3rn0va@gmail.com>'\n\n" | lolcat
 			;;
 
-			all)
+			tools)
 				case $3 in
 					network)
 						grep '/network/' $HOME/.gg/gg.list | awk -F'::' '{ print $2}' | \
 						xargs -I{} bash -c 'curl -s {} | bash'
 
+						tput reset clear
+						printf "[+] GITGUN(gg) - THE TOOLKIT MANAGER\n" | lolcat
+						echo -e "------------------------------------\n" | lolcat
+						printf "[+] All Done\n" | lolcat
 						printf "[+] Please Logoff and Login back\n\n" | lolcat
 					;;
 
@@ -117,6 +121,10 @@ To help, do reach out to me on 'Mr. Sup3rN0vaa <m2sup3rn0va@gmail.com>'\n\n" | l
 						grep '/web/' $HOME/.gg/gg.list | awk -F'::' '{ print $2}' | \
 						xargs -I{} bash -c 'curl -s {} | bash'
 						
+						tput reset clear
+						printf "[+] GITGUN(gg) - THE TOOLKIT MANAGER\n" | lolcat
+						echo -e "------------------------------------\n" | lolcat
+						printf "[+] All Done\n" | lolcat
 						printf "[+] Please Logoff and Login back\n\n" | lolcat
 					;;
 
@@ -186,28 +194,58 @@ To help, do reach out to me on 'Mr. Sup3rN0vaa <m2sup3rn0va@gmail.com>'\n\n" | l
 			;;
 
 			tools)
-				tput reset clear
-				printf "[+] GITGUN(gg) - THE TOOLKIT MANAGER\n" | lolcat
-				echo -e "------------------------------------\n" | lolcat
+				case $3 in
+					network)
+						if [ -s $HOME/.gg/update-cache/gg_network.list ];
+						then
+							cat $HOME/.gg/update-cache/gg_network.list |\
+							xargs -I{} bash -c 'curl -s $(sed -n "s/{}:://p" $HOME/.gg/gg.list) | bash;\
+							printf "\n"'
 
-				if [ -s $HOME/.gg/update-cache/gg_network.list ];
-				then
-					cat $HOME/.gg/update-cache/gg_network.list |\
-					xargs -I{} bash -c 'curl -s $(sed -n "s/{}:://p" $HOME/.gg/gg.list) | bash;\
-					printf "\n"'
-				else
-					printf "[+] Network Tools - No Installation Candidate\n" | lolcat
-				fi
+							tput reset clear
+							printf "[+] GITGUN(gg) - THE TOOLKIT MANAGER\n" | lolcat
+							echo -e "------------------------------------\n" | lolcat
+							printf "[+] All Done\n" | lolcat
+							printf "[+] Please Logoff and Login back\n\n" | lolcat
+						else
+							tput reset clear
+							printf "[+] GITGUN(gg) - THE TOOLKIT MANAGER\n" | lolcat
+							echo -e "------------------------------------\n" | lolcat
+							printf "[+] Network Tools - No Installation Candidate\n\n" | lolcat
+						fi
+					;;
 
-				if [ -s $HOME/.gg/update-cache/gg_web.list ];
-				then
-					cat $HOME/.gg/update-cache/gg_web.list |\
-					xargs -I{} bash -c 'curl -s $(sed -n "s/{}:://p" $HOME/.gg/gg.list) | bash;\
-					printf "\n"'
-				else
-					printf "[+] Web Tools - No Installation Candidate\n" | lolcat
-				fi
-				echo ""
+					web)
+						if [ -s $HOME/.gg/update-cache/gg_web.list ];
+						then
+							cat $HOME/.gg/update-cache/gg_web.list |\
+							xargs -I{} bash -c 'curl -s $(sed -n "s/{}:://p" $HOME/.gg/gg.list) | bash;\
+							printf "\n"'
+
+							tput reset clear
+							printf "[+] GITGUN(gg) - THE TOOLKIT MANAGER\n" | lolcat
+							echo -e "------------------------------------\n" | lolcat
+							printf "[+] All Done\n" | lolcat
+							printf "[+] Please Logoff and Login back\n\n" | lolcat
+						else
+							tput reset clear
+							printf "[+] GITGUN(gg) - THE TOOLKIT MANAGER\n" | lolcat
+							echo -e "------------------------------------\n" | lolcat
+							printf "[+] Web Tools - No Installation Candidate\n\n" | lolcat
+						fi
+					;;
+
+					*)
+						tput reset clear
+
+						printf "[+] GITGUN(gg) - THE TOOLKIT MANAGER\n" | lolcat
+						echo -e "------------------------------------\n" | lolcat
+						printf "[+] Nothing to update\n" | lolcat
+						printf "[+] Type: 'gg update help' for reference\n" | lolcat
+						echo ""
+						exit 1
+					;;
+				esac
 			;;
 
 			shell)
@@ -228,10 +266,10 @@ To help, do reach out to me on 'Mr. Sup3rN0vaa <m2sup3rn0va@gmail.com>'\n\n" | l
 				    chmod +x $HOME/.local/bin/clearRam
 
 				    printf "[+] Updated GitGun(gg) Shell Profile\n" | lolcat
+				    printf "[+] Please Logoff and Login back\n\n" | lolcat
 				else
-					printf "[+] Nothing to update\n" | lolcat
+					printf "[+] Nothing to update\n\n" | lolcat
 				fi
-				echo ""
 			;;
 
 			*)
@@ -272,8 +310,8 @@ Examples:\n\
 'gg version' - Lists current installed version\n\
 'gg install shell' - Install My Custom Shell Scripts\n\
 'gg install nmap' - Installs 'nmap' from 'gg list tools'\n\
-'gg install all network' - Installs all the network tools available in 'gg list tools'\n\
-'gg install all web' - Installs all the web tools available in 'gg list tools'\n\
+'gg install tools network' - Installs all the network tools available in 'gg list tools'\n\
+'gg install tools web' - Installs all the web tools available in 'gg list tools'\n\
 'gg update shell' - Updates my local bash_profile to recent one\n\
 'gg update tools' - Updates all the installed tools\n\n\
  To help, do reach out to me on 'Mr. Sup3rN0vaa <m2sup3rn0va@gmail.com>'\n\n" | lolcat

@@ -14,9 +14,10 @@
 
 ![](img/gg.png)
 
-- `GitGun(gg)` is a command-line toolkit manager to `download`, `install` and `update` some of the most common pentesting tools
-- It includes some of my favourite pentesting tools with my custom shell scripts and my `bash_profile`
+- `GitGun(gg)` 🔫 is a command-line toolkit manager to `download`, `install` and `update` some of the most common pentesting tools
+- It includes some of my favourite pentesting tools 🐱‍👤 with my custom shell scripts 📜 and my `bash_profile`
 - Some of the tools include `tmux`, `git`, `vim`, `bat`, `exa` etc.
+- Additionally it supports bash completion as well, so tab works 😎
 
 ## **Installation**
 
@@ -34,9 +35,9 @@ curl -s https://raw.githubusercontent.com/m2sup3rn0va/gg/main/install.sh | bash
 ## **Installed Cmdlets**
 
 - Once you install `shell` with `gg install shell`, you will get some extra commands like:
-	- Updating and upgrading the system in one command: `apt-update`
-	- Free ram using: `clearRam`
+	- Updating and upgrading the system in one command: `apt-update` 🕺🕺
+	- Free ram using: `clearRam` 🏋️ ❤️
 
 ## **Future Updates**
 
-- Adding more tools
+- Adding more tools, so stay tuned !!! 👍👍
