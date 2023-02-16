@@ -15,27 +15,14 @@
 ![](img/gg.png)
 
 - `GitGun(gg)` 🔫 is a command-line toolkit manager to `download`, `install` and `update` some of the most common pentesting tools
-- It includes some of my favourite pentesting tools 🐱‍👤 with my custom shell scripts 📜 and my `bash_profile`
-- Tools List:
-	- Network Penetration Testing Tools
-		- NMAP
-		- MSFConsole Community Edition
-		- DSniff
-		- CrackMapExec
-		- Evil-Winrm
-		- Enum4Linux
-		- Responder
-		- SMBMap
-		- SNMPEnum
-		- Impacket
-	- Web Application Penetration Testing Tools
-		- BurpSuite Community Edition (WIP)
-		- OWASP ZAP (WIP)
-- Additionally it supports bash completion as well, so tab works 😎
+- It includes some of my favourite **pentesting tools** 🐱‍👤 with my **custom shell scripts** 📜 and my `bash_profile`
+- Additionally it supports **bash completion** as well, so tab works 😎
+
+> NOTE: To get the list of the tools available, you can see `ggt` folder
 
 ## **Installation**
 
-- First, install the pre-requisites: `sudo apt-get install -y wget curl lolcat git`
+- First, install the **pre-requisites**: `sudo apt-get install -y wget curl lolcat git`
 - Then, run 
 
 ```bash
@@ -49,9 +36,9 @@ curl -s https://raw.githubusercontent.com/m2sup3rn0va/gg/main/install.sh | bash
 ## **Installed Cmdlets**
 
 - Once you install `shell` with `gg install shell`, you will get some extra commands like:
-	- Updating and upgrading the system in one command: `apt-update` 🕺🕺
-	- Free ram using: `clearRam` 🏋️ ❤️
+	- **Updating and upgrading the system** in one command: `apt-update` 🕺🕺
+	- **Free ram** using: `clearRam` 🏋️ ❤️
 
 ## **Future Updates**
 
-- Adding more tools, so stay tuned !!! 👍👍
+- Adding more tools, so STAY TUNEDDD !!! 👍👍
