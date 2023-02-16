@@ -16,7 +16,21 @@
 
 - `GitGun(gg)` 🔫 is a command-line toolkit manager to `download`, `install` and `update` some of the most common pentesting tools
 - It includes some of my favourite pentesting tools 🐱‍👤 with my custom shell scripts 📜 and my `bash_profile`
-- Some of the tools include `tmux`, `git`, `vim`, `bat`, `exa` etc.
+- Tools List:
+	- Network Penetration Testing Tools
+		- NMAP
+		- MSFConsole Community Edition
+		- DSniff
+		- CrackMapExec
+		- Evil-Winrm
+		- Enum4Linux
+		- Responder
+		- SMBMap
+		- SNMPEnum
+		- Impacket
+	- Web Application Penetration Testing Tools
+		- BurpSuite Community Edition (WIP)
+		- OWASP ZAP (WIP)
 - Additionally it supports bash completion as well, so tab works 😎
 
 ## **Installation**
