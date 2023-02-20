@@ -2,10 +2,10 @@
 
 # gg - help version list install update
 # list - help tools shell
-# install - help tools
-# install tools - network web
+# install - help shell zsh tools
+# install tools - network web misc
 # update - help gg shell tools
-# update tools - network web
+# update tools - network web misc
 
 _ggCompletions()
 {
@@ -17,8 +17,8 @@ _ggCompletions()
 	
 	ggSwitches="help version list install update"
 	gglistSwitches="help tools shell"
-	gginstallSwitches="help tools"
-	gginstallupdatetoolsSwitches="network web"
+	gginstallSwitches="help shell zsh tools"
+	gginstallupdatetoolsSwitches="network web misc"
 	ggupdateSwitches="help gg tools shell"
 
 	if [[ ${prev} == "gg" ]] ; then

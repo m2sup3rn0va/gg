@@ -1,6 +1,6 @@
 [+] NOTE: You are running a release version dated: 16-February-2023
 
-[+] GitGun(gg) - Custom Shell Scripts
+[+] GitGun(gg) - Terminal Customization Scripts
 shell::https://raw.githubusercontent.com/m2sup3rn0va/gg/main/ggs/ggs.sh
 zsh::https://raw.githubusercontent.com/m2sup3rn0va/gg/main/ggs/ggs-zsh.sh
 
@@ -19,3 +19,11 @@ snmpenum::https://raw.githubusercontent.com/m2sup3rn0va/gg/main/ggt/network/snmp
 [+] GitGun(gg) - Web Tools
 burp::https://raw.githubusercontent.com/m2sup3rn0va/gg/main/ggt/web/burp.sh
 zap::https://raw.githubusercontent.com/m2sup3rn0va/gg/main/ggt/web/zap.sh
+
+[+] GitGun(gg) - Misc Tools
+seclists::https://raw.githubusercontent.com/m2sup3rn0va/gg/main/ggt/misc/seclists.sh
+
+[+] GitGun(gg) - Cracking Tools
+
+
+[+] GitGun(gg) - My Custom Scripts

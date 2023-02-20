@@ -22,6 +22,9 @@ then
 	mkdir -p $HOME/.gg/update-cache
 	touch $HOME/.gg/update-cache/gg_network.list
 	touch $HOME/.gg/update-cache/gg_web.list
+	touch $HOME/.gg/update-cache/gg_misc.list
+	touch $HOME/.gg/update-cache/gg_cracking.list
+	touch $HOME/.gg/update-cache/gg_custom.list
 
 	wget -q https://raw.githubusercontent.com/m2sup3rn0va/gg/main/gg -O $HOME/.gg/gg
 	wget -q https://raw.githubusercontent.com/m2sup3rn0va/gg/main/gg_BashCompletions.sh -O $HOME/.gg/gg_BashCompletions.sh

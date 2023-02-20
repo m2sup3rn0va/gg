@@ -64,6 +64,21 @@ To help, do reach out to me on 'Mr. Sup3rN0vaa <m2sup3rn0va@gmail.com>'\n\n" | l
 				echo -e "-------------------------\n" | lolcat
 				cat $HOME/.gg/gg.list | grep '/web/' | grep -v all | awk -F'::' '{ print $1 }'
 				echo ""
+
+				printf "\n[+] Available Misc Tools\n" | lolcat
+				echo -e "-------------------------\n" | lolcat
+				cat $HOME/.gg/gg.list | grep '/misc/' | grep -v all | awk -F'::' '{ print $1 }'
+				echo ""
+
+				#printf "\n[+] Available Cracking Tools\n" | lolcat
+				#echo -e "-------------------------\n" | lolcat
+				#cat $HOME/.gg/gg.list | grep '/cracking/' | grep -v all | awk -F'::' '{ print $1 }'
+				#echo ""
+
+				#printf "\n[+] Available Custom Scripts\n" | lolcat
+				#echo -e "-------------------------\n" | lolcat
+				#cat $HOME/.gg/gg.list | grep '/custom/' | grep -v all | awk -F'::' '{ print $1 }'
+				#echo ""
 			;;
 
 			*)
@@ -95,12 +110,15 @@ gg install <OPTIONS>\n\n\
 Options:\n\
 --------\n\
 help - Offers this page\n\
+shell - Installs My Custom Shell Settings\n\
+zsh - Install 'zsh' shell and applies 'Oh-My-ZSH' Themes\n\
 tools - Installs all the tools in arsenal\n\n\
 Examples:\n\
 ---------\n\
-'gg install tools network' - Install all the network tools\n\
-'gg install tools web' - Install all the web tools\n\
-'gg install nmap' - Install tools one-by-one. Get the tool-list from 'gg list tools'\n\n\
+'gg install shell' - Installs My Custom Shell Settings\n\
+'gg install zsh' - Install 'zsh' shell and applies 'Oh-My-ZSH' Themes\n\
+'gg install nmap' - Install tools one-by-one. Get the tool-list from 'gg list tools'\n\
+'gg install tools network/web/misc' - Install all the associated tools\n\n\
 To help, do reach out to me on 'Mr. Sup3rN0vaa <m2sup3rn0va@gmail.com>'\n\n" | lolcat
 			;;
 
@@ -127,6 +145,39 @@ To help, do reach out to me on 'Mr. Sup3rN0vaa <m2sup3rn0va@gmail.com>'\n\n" | l
 						printf "[+] All Done\n" | lolcat
 						printf "[+] Please Logoff and Login back\n\n" | lolcat
 					;;
+
+					misc)
+						grep '/misc/' $HOME/.gg/gg.list | awk -F'::' '{ print $2}' | \
+						xargs -I{} bash -c 'curl -s {} | bash'
+						
+						tput reset clear
+						printf "[+] GITGUN(gg) - THE TOOLKIT MANAGER\n" | lolcat
+						echo -e "------------------------------------\n" | lolcat
+						printf "[+] All Done\n" | lolcat
+						printf "[+] Please Logoff and Login back\n\n" | lolcat
+					;;
+
+#					cracking)
+#						grep '/cracking/' $HOME/.gg/gg.list | awk -F'::' '{ print $2}' | \
+#						xargs -I{} bash -c 'curl -s {} | bash'
+#
+#						tput reset clear
+#						printf "[+] GITGUN(gg) - THE TOOLKIT MANAGER\n" | lolcat
+#						echo -e "------------------------------------\n" | lolcat
+#						printf "[+] All Done\n" | lolcat
+#						printf "[+] Please Logoff and Login back\n\n" | lolcat
+#					;;
+
+#					custom)
+#						grep '/custom/' $HOME/.gg/gg.list | awk -F'::' '{ print $2}' | \
+#						xargs -I{} bash -c 'curl -s {} | bash'
+#
+#						tput reset clear
+#						printf "[+] GITGUN(gg) - THE TOOLKIT MANAGER\n" | lolcat
+#						echo -e "------------------------------------\n" | lolcat
+#						printf "[+] All Done\n" | lolcat
+#						printf "[+] Please Logoff and Login back\n\n" | lolcat
+#					;;
 
 					*)
 						tput reset clear
@@ -183,7 +234,7 @@ tools - Updates all the tools installed via GitGun\n\
 shell - Updates the local shell profile\n\n\
 Examples:\n\
 ---------\n\
-'gg update tools' - Updates all the tools installed via GitGun(gg)\n\
+'gg update tools network/web/misc' - Updates all the associated tools installed via GitGun(gg)\n\
 'gg update gg' - Updates itself\n\
 'gg update shell' - Updates the local shell profile\n\n\
 To help, do reach out to me on 'Mr. Sup3rN0vaa <m2sup3rn0va@gmail.com>'\n\n" | lolcat
@@ -232,6 +283,26 @@ To help, do reach out to me on 'Mr. Sup3rN0vaa <m2sup3rn0va@gmail.com>'\n\n" | l
 							printf "[+] GITGUN(gg) - THE TOOLKIT MANAGER\n" | lolcat
 							echo -e "------------------------------------\n" | lolcat
 							printf "[+] Web Tools - No Installation Candidate\n\n" | lolcat
+						fi
+					;;
+
+					misc)
+						if [ -s $HOME/.gg/update-cache/gg_misc.list ];
+						then
+							cat $HOME/.gg/update-cache/gg_misc.list |\
+							xargs -I{} bash -c 'curl -s $(sed -n "s/{}:://p" $HOME/.gg/gg.list) | bash;\
+							printf "\n"'
+
+							tput reset clear
+							printf "[+] GITGUN(gg) - THE TOOLKIT MANAGER\n" | lolcat
+							echo -e "------------------------------------\n" | lolcat
+							printf "[+] All Done\n" | lolcat
+							printf "[+] Please Logoff and Login back\n\n" | lolcat
+						else
+							tput reset clear
+							printf "[+] GITGUN(gg) - THE TOOLKIT MANAGER\n" | lolcat
+							echo -e "------------------------------------\n" | lolcat
+							printf "[+] Misc Tools - No Installation Candidate\n\n" | lolcat
 						fi
 					;;
 
@@ -308,12 +379,9 @@ Examples:\n\
 ---------\n\
 'gg' or 'gg help' - Offers this page\n\
 'gg version' - Lists current installed version\n\
-'gg install shell' - Install My Custom Shell Scripts\n\
-'gg install nmap' - Installs 'nmap' from 'gg list tools'\n\
-'gg install tools network' - Installs all the network tools available in 'gg list tools'\n\
-'gg install tools web' - Installs all the web tools available in 'gg list tools'\n\
-'gg update shell' - Updates my local bash_profile to recent one\n\
-'gg update tools' - Updates all the installed tools\n\n\
- To help, do reach out to me on 'Mr. Sup3rN0vaa <m2sup3rn0va@gmail.com>'\n\n" | lolcat
+'gg list help' - Help page of 'gg list'\n\
+'gg install help' - Help page of 'gg install'\n\
+'gg update help' - Help page of 'gg update'\n\n\
+To help, do reach out to me on 'Mr. Sup3rN0vaa <m2sup3rn0va@gmail.com>'\n\n" | lolcat
 	;;
 esac

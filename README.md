@@ -18,7 +18,7 @@
 - It includes some of my favourite **pentesting tools** 🐱‍👤 with my **custom shell scripts** 📜 and my `bash_profile`
 - Additionally it supports **bash completion** as well, so tab works 😎
 
-> NOTE: To get the list of the tools available, you can see `ggt` folder
+> NOTE: To get the list of available tools, check `ggt` folder
 
 ## **Installation**
 
